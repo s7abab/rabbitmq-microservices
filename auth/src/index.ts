@@ -1,6 +1,6 @@
 import express from "express";
 import { json } from "body-parser";
-import authRoute from './routes/authRoute'
+import authRoute from './routes/user.route'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
 
@@ -18,7 +18,8 @@ app.get("/api/users/currentuser", (req, res) => {
 
 app.use("/api/auth",authRoute)
 
-app.listen(3001, () => {
-  console.log("Listening on port 3001!!!!!!!!");
+const PORT = 3001
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}!!!!!!!!`);
   connectDb()
 });

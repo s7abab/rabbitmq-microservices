@@ -10,7 +10,7 @@ export default function AddProducts() {
   
   const addProduct = async (e)=>{
     e.preventDefault();
-    const res = await axios.post('http://localhost:4001/api/admin/addproduct',{
+    const res = await axios.post('http://localhost:4000/api/admin/addproduct',{
       name,
       price
     });
@@ -19,7 +19,7 @@ export default function AddProducts() {
     fetchProducts()
   }
   const fetchProducts = async ()=>{
-    const res = await axios.get('http://localhost:4001/api/admin/getproducts');
+    const res = await axios.get('http://localhost:4000/api/admin/getproducts');
     setProducts(res.data.products);
     console.log(res.data.products)
   }
