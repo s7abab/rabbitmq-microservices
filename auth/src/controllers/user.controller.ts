@@ -42,7 +42,7 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(400).send({
+      return res.status(200).send({
         success: false,
         message: "User not registered",
       });
