@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const dbUrl: string = "mongodb+srv://s7abab:n4AiAOBnXsv8ygfC@cluster1.aejszzn.mongodb.net/tuser"
+const dbUrl: string = "mongodb+srv://s7abab:n4AiAOBnXsv8ygfC@cluster1.aejszzn.mongodb.net/torder"
 
 const connectDb = async () => {
   try {

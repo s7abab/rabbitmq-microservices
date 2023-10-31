@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: admin-depl
+  name: products-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: admin
+      app: products
   template:
     metadata:
       labels:
-        app: admin
+        app: products
     spec:
       containers:
-        - name: admin
-          image: s7abab/admin
+        - name: products
+          image: s7abab/products
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: admin-srv
+  name: products-srv
 spec:
   selector:
-    app: admin
+    app: products
   ports:
-    - name: admin
+    - name: products
       protocol: TCP
       port: 4000
       targetPort: 4000

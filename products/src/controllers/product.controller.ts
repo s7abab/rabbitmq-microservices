@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import productModel from "../models/product.model";
+import { sendMessage } from "../events/publisher";
 
 interface IProduct {
+  type?: string;
   name: string;
   price: number;
 }
@@ -20,6 +22,15 @@ export const addProduct = async (req: Request, res: Response) => {
       name,
       price,
     });
+
+    const message = {
+      type: "PRODUCT-ADDED",
+      productId: product._id,
+      productName: product.name,
+      price: product.price,
+    };
+    // rabbit mq
+    sendMessage(message);
 
     res.status(201).send({
       success: true,

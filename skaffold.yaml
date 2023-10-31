@@ -16,8 +16,8 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: s7abab/admin
-      context: admin
+    - image: s7abab/products
+      context: products
       docker:
         dockerfile: Dockerfile
       sync:
