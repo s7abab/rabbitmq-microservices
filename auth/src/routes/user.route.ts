@@ -5,8 +5,8 @@ import {
   registerUser,
   signout,
 } from "../controllers/user.controller";
-import { currentUser } from "../middlewares/current.user";
-import { requireAuth } from "../middlewares/require.auth";
+import { currentUser } from "@s7adev/common";
+import { requireAuth } from "@s7adev/common";
 
 const userRouter = express.Router();
 

@@ -10,11 +10,7 @@ import connectDb from "./db";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+// app.use(cors())
 
 app.get("/api/users/currentuser", (req, res) => {
   res.send("Hi there!");

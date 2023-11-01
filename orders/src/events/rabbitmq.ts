@@ -1,6 +1,6 @@
 import amqp from "amqplib";
 
-const connectToRabbitMQ = async ()=> {
+const connectToRabbitMQ = async () => {
   try {
     const connection = await amqp.connect("amqp://rabbitmq-service");
     const channel = await connection.createChannel();
@@ -11,6 +11,6 @@ const connectToRabbitMQ = async ()=> {
     console.error("Error connecting to RabbitMQ:", error);
     throw error;
   }
-}
+};
 
 export default connectToRabbitMQ;

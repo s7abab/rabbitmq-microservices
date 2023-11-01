@@ -1,12 +1,13 @@
 import { saveProducts } from "../controllers/order.controller";
-import { setupRabbitMQ } from "./rabbitmq";
+import connectToRabbitMQ  from "./rabbitmq";
 
 export const startConsumer = async () => {
-  const { channel } = await setupRabbitMQ();
+  const { channel } = await connectToRabbitMQ();
+  
   const queue = "PRODUCT";
-
-  await channel.assertQueue(queue, { durable: false });
-
+  await channel.assertQueue(queue, { durable: true });
+  console.log(`Waiting for messages in ${queue}`);
+  
   channel.consume(queue, (msg) => {
     if (msg !== null) {
       const contentString = msg.content.toString();

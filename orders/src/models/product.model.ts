@@ -4,6 +4,7 @@ export interface IProducts extends Document {
   id: string;
   name: string;
   price: string;
+  booked: boolean;
 }
 
 const productSchema: Schema<IProducts> = new mongoose.Schema({
@@ -13,6 +14,10 @@ const productSchema: Schema<IProducts> = new mongoose.Schema({
   },
   price: {
     type: String,
+  },
+  booked: {
+    type: Boolean,
+    default: false,
   },
 });
 

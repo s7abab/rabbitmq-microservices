@@ -1,6 +1,27 @@
 import { Request, Response } from "express";
-import productModel from "../models/product.model";
+import productModel, { IProducts } from "../models/product.model";
 import { sendMessage } from "../events/publisher";
+
+// rabbit mq
+
+export const makeBooked = async (message: any) => {
+  const productId = message.productId;
+  try {
+    const order: IProducts | null = await productModel.findOne({
+      _id: productId,
+    });
+    
+    if (order && !order.booked) {
+      // Update the 'booked' property to true
+      order.booked = true;
+
+      // Save the updated document
+      await order.save();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 interface IProduct {
   type?: string;

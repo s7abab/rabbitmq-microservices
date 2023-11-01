@@ -7,7 +7,8 @@ export async function sendMessage(message: any) {
 
       const queueName = "PRODUCT";
       // Send a message to the queue
-      channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)));
+      await channel.assertQueue("PRODUCT", { durable: true });
+      channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)),  { persistent: true });
       console.log(`Sent message: "${message}" to queue: ${queueName}`);
     
       channel.close();

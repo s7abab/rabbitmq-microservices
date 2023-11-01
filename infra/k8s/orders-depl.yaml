@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: orders-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: orders
   template:
     metadata:
       labels:
-        app: auth
+        app: orders
     spec:
       containers:
-        - name: auth
-          image: s7abab/auth
+        - name: orders
+          image: s7abab/orders
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: orders-srv
 spec:
   selector:
-    app: auth
+    app: orders
   ports:
-    - name: auth
+    - name: orders
       protocol: TCP
-      port: 3001
-      targetPort: 3001
+      port: 5000
+      targetPort: 5000
