@@ -14,3 +14,16 @@ export const saveProducts = async (message: any) => {
     console.log(error);
   }
 };
+
+
+export const order = async (req: Request, res: Response) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      sucess:false,
+      error
+    });
+  }
+}

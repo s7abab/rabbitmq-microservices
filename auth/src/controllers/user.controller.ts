@@ -54,7 +54,7 @@ export const loginUser = async (req: Request, res: Response) => {
       });
     }
 
-    const token = jwt.sign({ id: user._id }, "123");
+    const token = jwt.sign({ id: user._id, email: user.email  }, "123");
     res.cookie("token", token);
 
     res.status(200).send({
@@ -75,7 +75,7 @@ export const currentUserInfo = async (req: Request, res: Response) => {
 
 export const signout = async (req: Request, res: Response) => {
   try {
-    res.clearCookie("token");
+
     res.status(200).send({
       success: true,
       message: "Signout successfully",

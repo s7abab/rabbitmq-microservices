@@ -11,14 +11,14 @@ declare global {
             currentUser?: UserPayload
         }
     }
-}
-export const currentUser = (req:Request, res:Response, next:NextFunction) => {
-    if(!req.cookies?.token){
-        return next();
     }
+    export const currentUser = (req:Request, res:Response, next:NextFunction) => {
+        if(!req.body?.token){
+            return next();
+        }
 
     try {
-        const payload = jwt.verify(req.cookies.token, '123') as UserPayload;
+        const payload = jwt.verify(req.body?.token, '123') as UserPayload;
         req.currentUser = payload;
     } catch (error) {
     }

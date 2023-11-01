@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Navbar from "../(common)/Navbar";
 
 export default function AddProducts() {
   const [products, setProducts] = useState();
@@ -21,7 +22,6 @@ export default function AddProducts() {
   const fetchProducts = async ()=>{
     const res = await axios.get('http://localhost:4000/api/products/getproducts');
     setProducts(res.data.products);
-    console.log(res.data.products)
   }
 
   useEffect(()=>{
@@ -30,6 +30,7 @@ export default function AddProducts() {
 
   return (
     <>
+      <Navbar />
     <div className="h-1/2 w-screen flex justify-center items-center">
       <form onSubmit={addProduct}>
         <div className="mb-6">
@@ -72,8 +73,11 @@ export default function AddProducts() {
         </button>
       </form>
     </div>
-      <div className="h-1/2 w-1/3 flex flex-col justify-center">
-     {products?.map((product,index)=><div key={index} className="bg-gray-700 m-3 p-3 ">{product.name}</div>)}
+    <div className="grid grid-cols-3 grid-rows-2 mt-20">
+        {products?.map((product,index)=><div key={index} className="bg-gray-700 m-3 p-3 flex justify-between rounded-md">
+            <h6>{product.name}</h6>
+            {/* <button className="bg-gray-300 text-black px-3 py-1 rounded-3xl hover:bg-gray-600 border-none">Order Now</button> */}
+        </div>)}
       </div>
     </>
 

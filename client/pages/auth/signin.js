@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { useState } from "react";
+import Navbar from "../(common)/Navbar";
+import Link from "next/link";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ export default function Signin() {
       const data = res.data;
       if (data.success) {
         localStorage.setItem("token", data.token);
-        // window.location.href = "/auth/login"; // redirect to login page after account creation
+        window.location.href = "/"; // redirect to login page after account creation
         alert(res.data.message);
       } else {
         alert(res.data.message);
@@ -29,6 +31,11 @@ export default function Signin() {
     }
   };
   return (
+    <>
+    <Navbar />
+    <div className="flex justify-center translate-y-36">
+    <Link  href='/auth/signup'>Register</Link>
+    </div>
     <div className="w-screen h-screen flex justify-center items-center">
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
@@ -74,5 +81,7 @@ export default function Signin() {
         </button>
       </form>
     </div>
+    </>
+
   );
 }
